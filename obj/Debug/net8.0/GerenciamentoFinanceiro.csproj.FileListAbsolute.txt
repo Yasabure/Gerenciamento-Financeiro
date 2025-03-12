@@ -170,3 +170,4 @@ D:\C#\GerenciamentoFinanceiro\GerenciamentoFinanceiro\obj\Debug\net8.0\refint\Ge
 D:\C#\GerenciamentoFinanceiro\GerenciamentoFinanceiro\obj\Debug\net8.0\GerenciamentoFinanceiro.pdb
 D:\C#\GerenciamentoFinanceiro\GerenciamentoFinanceiro\obj\Debug\net8.0\GerenciamentoFinanceiro.genruntimeconfig.cache
 D:\C#\GerenciamentoFinanceiro\GerenciamentoFinanceiro\obj\Debug\net8.0\ref\GerenciamentoFinanceiro.dll
+D:\C#\GerenciamentoFinanceiro\GerenciamentoFinanceiro\obj\Debug\net8.0\GerenciamentoFinanceiro.sourcelink.json
