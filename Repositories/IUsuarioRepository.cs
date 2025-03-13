@@ -1,6 +1,8 @@
-﻿namespace GerenciamentoFinanceiro.Repositories
+﻿using GerenciamentoFinanceiro.Model;
+
+namespace GerenciamentoFinanceiro.Repositories
 {
-    public interface IUsuarioRepository
+    public interface IUsuarioRepository : IRepository<Usuario>
     {
     }
 }
