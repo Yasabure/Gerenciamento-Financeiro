@@ -456,7 +456,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Transacao"
+                    "$ref": "#/components/schemas/TransacaoDTO"
                   }
                 }
               },
@@ -464,7 +464,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Transacao"
+                    "$ref": "#/components/schemas/TransacaoDTO"
                   }
                 }
               },
@@ -472,7 +472,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Transacao"
+                    "$ref": "#/components/schemas/TransacaoDTO"
                   }
                 }
               }
@@ -488,17 +488,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Transacao"
+                "$ref": "#/components/schemas/TransacaoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Transacao"
+                "$ref": "#/components/schemas/TransacaoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Transacao"
+                "$ref": "#/components/schemas/TransacaoDTO"
               }
             }
           }
@@ -509,17 +509,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Transacao"
+                  "$ref": "#/components/schemas/TransacaoDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Transacao"
+                  "$ref": "#/components/schemas/TransacaoDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Transacao"
+                  "$ref": "#/components/schemas/TransacaoDTO"
                 }
               }
             }
@@ -549,17 +549,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Transacao"
+                  "$ref": "#/components/schemas/TransacaoDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Transacao"
+                  "$ref": "#/components/schemas/TransacaoDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Transacao"
+                  "$ref": "#/components/schemas/TransacaoDTO"
                 }
               }
             }
@@ -587,17 +587,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Transacao"
+                  "$ref": "#/components/schemas/TransacaoDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Transacao"
+                  "$ref": "#/components/schemas/TransacaoDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Transacao"
+                  "$ref": "#/components/schemas/TransacaoDTO"
                 }
               }
             }
@@ -623,17 +623,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Transacao"
+                "$ref": "#/components/schemas/TransacaoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Transacao"
+                "$ref": "#/components/schemas/TransacaoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Transacao"
+                "$ref": "#/components/schemas/TransacaoDTO"
               }
             }
           }
@@ -644,17 +644,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Transacao"
+                  "$ref": "#/components/schemas/TransacaoDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Transacao"
+                  "$ref": "#/components/schemas/TransacaoDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Transacao"
+                  "$ref": "#/components/schemas/TransacaoDTO"
                 }
               }
             }
@@ -675,7 +675,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Usuario"
+                    "$ref": "#/components/schemas/ExibirUsuarioDTO"
                   }
                 }
               },
@@ -683,7 +683,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Usuario"
+                    "$ref": "#/components/schemas/ExibirUsuarioDTO"
                   }
                 }
               },
@@ -691,7 +691,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Usuario"
+                    "$ref": "#/components/schemas/ExibirUsuarioDTO"
                   }
                 }
               }
@@ -707,17 +707,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/UsuarioDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/UsuarioDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/UsuarioDTO"
               }
             }
           }
@@ -728,17 +728,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/UsuarioDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/UsuarioDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/UsuarioDTO"
                 }
               }
             }
@@ -768,17 +768,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/ExibirUsuarioDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/ExibirUsuarioDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/ExibirUsuarioDTO"
                 }
               }
             }
@@ -806,17 +806,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/AtualizarUsuarioDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/AtualizarUsuarioDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/AtualizarUsuarioDTO"
                 }
               }
             }
@@ -842,17 +842,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/AtualizarUsuarioDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/AtualizarUsuarioDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Usuario"
+                "$ref": "#/components/schemas/AtualizarUsuarioDTO"
               }
             }
           }
@@ -863,17 +863,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/AtualizarUsuarioDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/AtualizarUsuarioDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Usuario"
+                  "$ref": "#/components/schemas/AtualizarUsuarioDTO"
                 }
               }
             }
@@ -884,6 +884,40 @@
   },
   "components": {
     "schemas": {
+      "AtualizarUsuarioDTO": {
+        "required": [
+          "email",
+          "nome",
+          "senha",
+          "tipoUsuario"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "maxLength": 80,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "senha": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "tipoUsuario": {
+            "$ref": "#/components/schemas/TipoUsuario"
+          }
+        },
+        "additionalProperties": false
+      },
       "CategoriaTransacao": {
         "enum": [
           0,
@@ -926,6 +960,31 @@
             "$ref": "#/components/schemas/FrequenciaDespesa"
           },
           "proximaData": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExibirUsuarioDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoUsuario": {
+            "$ref": "#/components/schemas/TipoUsuario"
+          },
+          "dataCadastro": {
             "type": "string",
             "format": "date-time"
           }
@@ -988,19 +1047,14 @@
         "type": "integer",
         "format": "int32"
       },
-      "Transacao": {
+      "TransacaoDTO": {
         "required": [
           "categoria",
           "data",
-          "tipoTransacao",
-          "valor"
+          "tipoTransacao"
         ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
           "valor": {
             "type": "number",
             "format": "double"
@@ -1018,20 +1072,14 @@
         },
         "additionalProperties": false
       },
-      "Usuario": {
+      "UsuarioDTO": {
         "required": [
-          "dataCadastro",
           "email",
           "nome",
-          "senha",
-          "tipoUsuario"
+          "senha"
         ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
           "nome": {
             "maxLength": 80,
             "minLength": 0,
@@ -1046,13 +1094,6 @@
             "maxLength": 100,
             "minLength": 0,
             "type": "string"
-          },
-          "tipoUsuario": {
-            "$ref": "#/components/schemas/TipoUsuario"
-          },
-          "dataCadastro": {
-            "type": "string",
-            "format": "date-time"
           }
         },
         "additionalProperties": false

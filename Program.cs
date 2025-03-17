@@ -1,4 +1,5 @@
 using GerenciamentoFinanceiro.Data;
+using GerenciamentoFinanceiro.DTOs.Mappings;
 using GerenciamentoFinanceiro.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,7 @@ builder.Services.AddScoped<IMetaFinanceiraRepository, MetaFinanceiraRepository>(
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<ITransacaoRepository, TransacaoRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddAutoMapper(typeof(UsuarioDTOMapping));
 
 
 

@@ -171,3 +171,4 @@ D:\C#\GerenciamentoFinanceiro\GerenciamentoFinanceiro\obj\Debug\net8.0\Gerenciam
 D:\C#\GerenciamentoFinanceiro\GerenciamentoFinanceiro\obj\Debug\net8.0\GerenciamentoFinanceiro.genruntimeconfig.cache
 D:\C#\GerenciamentoFinanceiro\GerenciamentoFinanceiro\obj\Debug\net8.0\ref\GerenciamentoFinanceiro.dll
 D:\C#\GerenciamentoFinanceiro\GerenciamentoFinanceiro\obj\Debug\net8.0\GerenciamentoFinanceiro.sourcelink.json
+D:\C#\GerenciamentoFinanceiro\GerenciamentoFinanceiro\bin\Debug\net8.0\AutoMapper.dll
