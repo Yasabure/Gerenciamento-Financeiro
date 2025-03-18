@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[GerenciamentoFinanceiro.Model.DespesasFixas, GerenciamentoFinanceiro, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[GerenciamentoFinanceiro.DTOs.DespesasFixasDTO, GerenciamentoFinanceiro, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -28,14 +28,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "despesa",
-        "Type": "GerenciamentoFinanceiro.Model.DespesasFixas",
+        "Name": "despesaDTO",
+        "Type": "GerenciamentoFinanceiro.DTOs.DespesasFixasDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "GerenciamentoFinanceiro.Model.DespesasFixas",
+        "Type": "GerenciamentoFinanceiro.DTOs.DespesasFixasDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -61,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "GerenciamentoFinanceiro.Model.DespesasFixas",
+        "Type": "GerenciamentoFinanceiro.DTOs.DespesasFixasDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -87,7 +87,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "GerenciamentoFinanceiro.Model.DespesasFixas",
+        "Type": "GerenciamentoFinanceiro.DTOs.DespesasFixasDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -111,14 +111,14 @@
         "IsRequired": true
       },
       {
-        "Name": "despesasFixas",
-        "Type": "GerenciamentoFinanceiro.Model.DespesasFixas",
+        "Name": "despesasFixasDTO",
+        "Type": "GerenciamentoFinanceiro.DTOs.DespesasFixasDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "GerenciamentoFinanceiro.Model.DespesasFixas",
+        "Type": "GerenciamentoFinanceiro.DTOs.DespesasFixasDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -138,7 +138,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[GerenciamentoFinanceiro.Model.MetaFinanceira, GerenciamentoFinanceiro, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[GerenciamentoFinanceiro.DTOs.MetaFinanceiraDTO, GerenciamentoFinanceiro, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -157,14 +157,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Meta",
-        "Type": "GerenciamentoFinanceiro.Model.MetaFinanceira",
+        "Name": "metaFinanceiraDTO",
+        "Type": "GerenciamentoFinanceiro.DTOs.MetaFinanceiraDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "GerenciamentoFinanceiro.Model.MetaFinanceira",
+        "Type": "GerenciamentoFinanceiro.DTOs.MetaFinanceiraDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -190,7 +190,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "GerenciamentoFinanceiro.Model.MetaFinanceira",
+        "Type": "GerenciamentoFinanceiro.DTOs.MetaFinanceiraDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -216,7 +216,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "GerenciamentoFinanceiro.Model.MetaFinanceira",
+        "Type": "GerenciamentoFinanceiro.DTOs.MetaFinanceiraDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -240,8 +240,8 @@
         "IsRequired": true
       },
       {
-        "Name": "Meta",
-        "Type": "GerenciamentoFinanceiro.Model.MetaFinanceira",
+        "Name": "metaFinanceiraDTO",
+        "Type": "GerenciamentoFinanceiro.DTOs.MetaFinanceiraDTO",
         "IsRequired": true
       }
     ],

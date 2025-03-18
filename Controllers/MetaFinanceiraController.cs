@@ -1,4 +1,6 @@
-﻿using GerenciamentoFinanceiro.Model;
+﻿using AutoMapper;
+using GerenciamentoFinanceiro.DTOs;
+using GerenciamentoFinanceiro.Model;
 using GerenciamentoFinanceiro.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,43 +11,48 @@ namespace GerenciamentoFinanceiro.Controllers
     public class MetaFinanceiraController : Controller
     {
         private readonly IUnitOfWork _uof;
+        private readonly IMapper _mapper;
 
-        public MetaFinanceiraController(IUnitOfWork uof)
+        public MetaFinanceiraController(IUnitOfWork uof, IMapper mapper)
         {
             _uof = uof;
+            _mapper = mapper;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MetaFinanceira>>> GetAll()
+        public async Task<ActionResult<IEnumerable<MetaFinanceiraDTO>>> GetAll()
         {
             var despesasFixas = await _uof.MetaFinanceiraRepository.GetAllAsync();
             if (despesasFixas is null)
                 return NotFound("Não Existem Registros");
 
-            return Ok(despesasFixas);
+            var despesasFixasDTO = _mapper.Map<IEnumerable<MetaFinanceiraDTO>>(despesasFixas);
+            return Ok(despesasFixasDTO);
         }
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<MetaFinanceira>> GetById(int id)
+        public async Task<ActionResult<MetaFinanceiraDTO>> GetById(int id)
         {
             var DespesaFixa = await _uof.MetaFinanceiraRepository.GetAsync(c => c.Id == id);
             if (DespesaFixa is null)
                 return NotFound("Produto não encontrado");
-
+            var DespesaFixaDTO = _mapper.Map<MetaFinanceiraDTO>(DespesaFixa);
 
             return Ok(DespesaFixa);
         }
         [HttpPost]
-        public async Task<ActionResult<MetaFinanceira>> Post(MetaFinanceira Meta)
+        public async Task<ActionResult<MetaFinanceiraDTO>> Post(MetaFinanceiraDTO metaFinanceiraDTO)
         {
-            if (Meta is null)
+            if (metaFinanceiraDTO is null)
                 return BadRequest();
 
-            var novoproduto = _uof.MetaFinanceiraRepository.AddAsync(Meta);
+            var metaFinanceira = _mapper.Map<MetaFinanceira>(metaFinanceiraDTO);
+            var NovaMetaFinanceira = _uof.MetaFinanceiraRepository.AddAsync(metaFinanceira);
             await _uof.CommitAsync();
+            var Meta = _mapper.Map<MetaFinanceiraDTO>(metaFinanceira);
 
             return Ok(Meta);
         }
         [HttpDelete("{id:int}")]
-        public async Task<ActionResult<MetaFinanceira>> Delete(int id)
+        public async Task<ActionResult<MetaFinanceiraDTO>> Delete(int id)
         {
             var Meta = await _uof.MetaFinanceiraRepository.GetAsync(c => c.Id == id);
             if (Meta is null)
@@ -53,17 +60,24 @@ namespace GerenciamentoFinanceiro.Controllers
 
             var despesaRemovida = _uof.MetaFinanceiraRepository.DeleteAsync(Meta);
             await _uof.CommitAsync();
+            var despesaRemovidaDTO = _mapper.Map<MetaFinanceiraDTO>(Meta);
             return Ok(despesaRemovida);
         }
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<MetaFinanceira>> Put(int id, MetaFinanceira Meta)
+        public async Task<ActionResult<MetaFinanceira>> Put(int id, MetaFinanceiraDTO metaFinanceiraDTO)
         {
-            if (id != Meta.Id)
+            if(metaFinanceiraDTO is null)
                 return BadRequest();
 
-            var MetaAtualizada = _uof.MetaFinanceiraRepository.UpdateAsync(Meta);
+            var meta  = await _uof.MetaFinanceiraRepository.GetAsync(c => c.Id == id);
+            if (meta is null)
+                return NotFound();
+
+            _mapper.Map(metaFinanceiraDTO, meta);
+            var MetaAtualizada = await _uof.MetaFinanceiraRepository.UpdateAsync(meta);
             await _uof.CommitAsync();
-            return Ok(MetaAtualizada);
+            var transacaoAtualizadaDTO = _mapper.Map<MetaFinanceiraDTO>(meta);
+            return Ok(transacaoAtualizadaDTO);
         }
     }
 }
