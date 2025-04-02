@@ -1,80 +1,154 @@
 ﻿using AutoMapper;
 using GerenciamentoFinanceiro.DTOs;
 using GerenciamentoFinanceiro.Model;
-using GerenciamentoFinanceiro.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace GerenciamentoFinanceiro.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/usuario")]
     [ApiController]
-    public class UsuarioController : Controller
+    public class UsuarioController : ControllerBase
     {
-        private readonly IUnitOfWork _uof;
+        private readonly UserManager<Usuario> _userManager;
+        private readonly SignInManager<Usuario> _signInManager;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _config;
 
-        public UsuarioController(IUnitOfWork uof, IMapper mapper)
+        public UsuarioController(UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, IMapper mapper, IConfiguration config)
         {
-            _uof = uof;
+            _userManager = userManager;
+            _signInManager = signInManager;
             _mapper = mapper;
+            _config = config;
         }
 
+        /// <summary>
+        /// Obtém todos os usuários (Apenas Admins)
+        /// </summary>
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ExibirUsuarioDTO>>> GetAll()
         {
-            var user = await _uof.UsuarioRepository.GetAllAsync();
-            if (user is null)
-                return NotFound("Não Existem Registros");
-
-            var userDto = _mapper.Map<IEnumerable<ExibirUsuarioDTO>>(user);
-            return Ok(userDto);
+            var users = await _userManager.Users.ToListAsync();
+            var usersDto = _mapper.Map<IEnumerable<ExibirUsuarioDTO>>(users);
+            return Ok(usersDto);
         }
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<ExibirUsuarioDTO>> GetById(int id)
+
+        /// <summary>
+        /// Obtém um usuário pelo ID
+        /// </summary>
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ExibirUsuarioDTO>> GetById(string id)
         {
-            var user = await _uof.UsuarioRepository.GetAsync(c => c.Id == id);
-            if (user is null)
-                return NotFound("Produto não encontrado");
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+                return NotFound("Usuário não encontrado");
 
             var userDto = _mapper.Map<ExibirUsuarioDTO>(user);
             return Ok(userDto);
         }
-        [HttpPost]
-        public async Task<ActionResult<UsuarioDTO>> Post(UsuarioDTO usuarioDTO)
+
+        /// <summary>
+        /// Registra um novo usuário
+        /// </summary>
+        [AllowAnonymous]
+        [HttpPost("registrar")]
+        public async Task<ActionResult<UsuarioDTO>> Register(UsuarioDTO usuarioDTO)
         {
-            if (usuarioDTO is null)
+            if (usuarioDTO == null)
                 return BadRequest();
 
             var user = _mapper.Map<Usuario>(usuarioDTO);
-            var novoUsuario = await _uof.UsuarioRepository.AddAsync(user);
-            await _uof.CommitAsync();
-            var novoUsuarioDto = _mapper.Map<UsuarioDTO>(user);
+            user.UserName = usuarioDTO.Email;
+            user.Email = usuarioDTO.Email;
+            user.DataCadastro = DateTime.UtcNow;
 
-            return Ok(novoUsuarioDto);
+            var result = await _userManager.CreateAsync(user, usuarioDTO.Senha);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
+
+            return Ok("Usuário registrado com sucesso!");
         }
-        [HttpDelete("{id:int}")]
-        public async Task<ActionResult<AtualizarUsuarioDTO>> Delete(int id)
+
+        /// <summary>
+        /// Autenticação do usuário (Login)
+        /// </summary>
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public async Task<ActionResult> Login(LoginDTO loginDto)
         {
-            var user = await _uof.UsuarioRepository.GetAsync(c => c.Id == id);
-            if (user is null)
+            var user = await _userManager.FindByEmailAsync(loginDto.Email);
+            if (user == null)
+                return Unauthorized("Usuário ou senha inválidos!");
+
+            var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
+            if (!result.Succeeded)
+                return Unauthorized("Usuário ou senha inválidos!");
+
+            var token = GerarToken(user);
+            return Ok(new { Token = token });
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+                return NotFound("Usuário não encontrado!");
+
+            await _userManager.DeleteAsync(user);
+            return Ok("Usuário removido!");
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<AtualizarUsuarioDTO>> Put(Guid id, AtualizarUsuarioDTO userDto)
+        {
+            if (id != userDto.Id)
                 return BadRequest();
 
-            var userRemovido = _uof.UsuarioRepository.DeleteAsync(user);
-            await _uof.CommitAsync();
-            var userDto = _mapper.Map<AtualizarUsuarioDTO>(user);
-            return Ok(user);
-        }
-        [HttpPut("{id:int}")]
-        public async Task<ActionResult<AtualizarUsuarioDTO>> Put(int id, AtualizarUsuarioDTO user)
-        {
-            if (id != user.Id)
-                return BadRequest();
+            var usuario = await _userManager.FindByIdAsync(id.ToString());
+            if (usuario == null)
+                return NotFound("Usuário não encontrado!");
 
-            var usuario = _mapper.Map<Usuario>(user);
-            var UsuarioAtualizado = _uof.UsuarioRepository.UpdateAsync(usuario);
-            await _uof.CommitAsync();
-            var UsuarioAtualizadoDTO = _mapper.Map<AtualizarUsuarioDTO>(usuario);
-            return Ok(usuario);
+            _mapper.Map(userDto, usuario);
+            var result = await _userManager.UpdateAsync(usuario);
+
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
+
+            return Ok(userDto);
+        }
+
+        private string GerarToken(Usuario usuario)
+        {
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, usuario.Id),
+                new Claim(ClaimTypes.Name, usuario.UserName),
+                new Claim(ClaimTypes.Email, usuario.Email),
+                new Claim(ClaimTypes.Role, usuario.TipoUsuario.ToString())
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:SecretKey"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                _config["Jwt:Issuer"],
+                _config["Jwt:Audience"],
+                claims,
+                expires: DateTime.UtcNow.AddHours(2),
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

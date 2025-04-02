@@ -1,8 +1,11 @@
 ﻿using GerenciamentoFinanceiro.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 namespace GerenciamentoFinanceiro.Data
+
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<Usuario>
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {

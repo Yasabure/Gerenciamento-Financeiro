@@ -1,23 +1,23 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using GerenciamentoFinanceiro.Enums;
+using Microsoft.AspNetCore.Identity;
 
 namespace GerenciamentoFinanceiro.Model
 {
-    public class Usuario
+    public class Usuario : IdentityUser
     {
-        public int Id { get; set; }
-        [Required]
-        [StringLength(80)]
-        public string Nome { get; set; } = string.Empty;
-        [Required]
-        [StringLength(100)]
-        public string Email { get; set; } = string.Empty ;
-        [Required]
-        [StringLength(100)]
-        public string Senha { get; set; } = string .Empty ;
+
         [Required]
         public TipoUsuario TipoUsuario { get; set; }
         [Required]
         public DateTime DataCadastro { get; set; }
+        // Relacionamento 1:N com Transacao
+        public List<Transacao> Transacoes { get; set; } = new();
+
+        // Relacionamento 1:N com MetaFinanceira
+        public List<MetaFinanceira> MetasFinanceiras { get; set; } = new();
+
+        // Relacionamento 1:N com DespesasFixas
+        public List<DespesasFixas> DespesasFixas { get; set; } = new();
     }
 }

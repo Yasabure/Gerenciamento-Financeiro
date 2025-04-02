@@ -3,9 +3,11 @@ using GerenciamentoFinanceiro.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using GerenciamentoFinanceiro.DTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GerenciamentoFinanceiro.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class TransacaoController : Controller

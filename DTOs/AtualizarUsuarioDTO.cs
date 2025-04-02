@@ -5,7 +5,7 @@ namespace GerenciamentoFinanceiro.DTOs
 {
     public class AtualizarUsuarioDTO
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
         [StringLength(80)]
         public string Nome { get; set; } = string.Empty;

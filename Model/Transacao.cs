@@ -12,10 +12,12 @@ namespace GerenciamentoFinanceiro.Model
         public decimal Valor { get; set; }
         [Required]
         public TipoTransacao TipoTransacao { get; set; }
-        [Required]
-        public CategoriaTransacao Categoria { get; set; }
+
         [Required]
         public DateTime Data { get; set; }
+        [Required]
 
+
+        public CategoriaTransacao Categoria { get; set; }
     }
 }

@@ -13,10 +13,12 @@ namespace GerenciamentoFinanceiro.Model
         [Column(TypeName = "decimal(10,2)")]
         public decimal Valor { get; set; }
         [Required]
-        public CategoriaTransacao Categoria { get; set; }
-        [Required]
         public FrequenciaDespesa Frequencia { get; set; }
         [Required]
         public DateTime ProximaData { get; set; }
+
+        [Required]
+        [Column(TypeName = "int")]
+        public CategoriaTransacao Categoria { get; set; }
     }
 }

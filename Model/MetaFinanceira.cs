@@ -15,6 +15,5 @@ namespace GerenciamentoFinanceiro.Model
         public DateTime DataLimite { get; set; }
         [Required]
         public Boolean Status { get; set; } = true;
-
     }
 }

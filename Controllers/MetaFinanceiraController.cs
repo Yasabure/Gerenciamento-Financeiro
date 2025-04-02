@@ -2,10 +2,12 @@
 using GerenciamentoFinanceiro.DTOs;
 using GerenciamentoFinanceiro.Model;
 using GerenciamentoFinanceiro.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GerenciamentoFinanceiro.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class MetaFinanceiraController : Controller
